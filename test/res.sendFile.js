@@ -112,9 +112,10 @@ describe('res', function(){
         cb();
       });
 
-      var server = app.listen()
-      var test = request(server).get('/')
-      test.expect(200, cb);
+      app.listen().then(function(server) {
+        var test = request(server).get('/')
+        test.expect(200, cb)
+      })
     })
 
     describe('with "cacheControl" option', function () {
